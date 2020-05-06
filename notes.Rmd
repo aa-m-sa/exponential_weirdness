@@ -1,0 +1,16 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+xt <- 0:400/100
+f2 <- exp(0.68*xt) -1 + rnorm(401, sd=1.4)
+f1 <- 0.9*xt^2 + rnorm(401, sd=1.4)
+df <- data.frame(xt, f1, f2)
+dfm <- melt(df, id.vars=c("xt"))
+ggplot(dfm, aes(x=xt, y=value, color=variable)) + geom_point()
+ggsave("exp_vs_x2.png")
+```
